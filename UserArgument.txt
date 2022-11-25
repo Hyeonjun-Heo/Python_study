@@ -1,0 +1,23 @@
+# Python_study
+
+앞서 했던 예제중, 링크를 들어가면 403 error가 발생합니다.
+이유는 어느 웹 사이트던 접속을 하려는 사용자의 정보를 알 수 있기 때문입니다. //(헤더 정보)
+예를 들어, 모바일로 접속하는 것 과, PC로 접속 하려 할 때 웹사이트에서 정보를 읽고, 모바일 전용 화면으로 내보내기를 하거나
+PC전용 화면으로 내보내기를 하는 것 과 같습니다.
+
+이런 이유로, 크롬이나 익스플로어에서 접속할 때는 정상적으로 웹이 작동하지만, request를 사용하여 웹을 접속하면
+웹에서 HTML정보를 내어 주지 않습니다.
+이때 UserArgument를 사용하여 해결 할 수 있습니다.
+
+my uesrArgument 알아 보는 방법 : google에 What is my UserArguments?를 검색후, 접속 -> 웹에 나오는 주소가 자신의UserArgument
+
+import requests 
+url = http://nadocoding.tistory.com
+headers = {"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"}
+res = requests.get(url, headers = headers)
+res.raise_for_status()
+with open("nadocoding.html","w", encoding="utf8")as f:
+    f.write(res.next)
+
+headers를 넣어 주기 전까지는 tistory에서 직접 접속하여 정보를 받아왔지만, UserArguments를 headers로 넘겨줌으로써 
+구글에서 접속한 것과 동일한 효과를 볼 수 있습니다.
